@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from .models import Post
 
 class LatestPostsFeed(Feed):
+    
     title = 'My blog'
     link = reverse_lazy('blog:post_list')
     description = 'New posts of my blog.'
@@ -17,6 +18,6 @@ class LatestPostsFeed(Feed):
 
     def item_description(self, item):
         return truncatewords_html(markdown.markdown(item.body), 30)
-        
+
     def item_pubdate(self, item):
         return item.publish
